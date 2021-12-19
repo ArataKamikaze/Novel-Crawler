@@ -24,17 +24,15 @@ def pageGetter(driver_path, chapters, url, name):
     DRIVER_PATH = driver_path
 
     options = Options()
-    options.headless = True
-    options.add_argument("--window-size=1920,1200")
-
+    options.add_experimental_option("excludeSwitches", ["enable-automation"])
+    options.add_experimental_option('useAutomationExtension', False)
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
 
     for i in range(chapters):
-
-        driver = webdriver.Chrome(options=options, executable_path=DRIVER_PATH)
-
         #driver = webdriver.Chrome(executable_path=DRIVER_PATH)
         driver.get(url)
-        print(driver.page_source)
+
 
         text = driver.find_elements(By.CLASS_NAME, 'h4.title', )
 
@@ -42,7 +40,9 @@ def pageGetter(driver_path, chapters, url, name):
 
         for e in text:
             chapter = ["<h1>" + e.text.split("\n")[0] + "</h1>\n"]
+            print(e.text.split("\n")[0])
         text = driver.find_element(By.ID, 'arrticle', )
+
         text = text.find_elements(By.TAG_NAME,"p" )
         for e in text:
             chapter.append(e.get_attribute('outerHTML')+"\n")
