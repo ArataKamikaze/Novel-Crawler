@@ -1,6 +1,7 @@
 import site_chooser
-chapter_number = 8
+chapter_number = 2000
 DRIVER_PATH = 'chromedriver/chromedriver.exe'
-url = "https://ranobes.net/read-572723.html"
-filename = "Let me Game in Peace - vol 13"
-site_chooser.site_chooser(DRIVER_PATH, chapter_number, url, filename)
+url = "https://wuxiaworld.site/novel/cultivation-chat-group-webnovel-wuxia/chapter-1/"
+filename = "Cultivation chat group - 1778 chapters"
+site = "wuxiaworld.site"
+site_chooser.site_chooser(DRIVER_PATH, chapter_number, url, filename, site)
